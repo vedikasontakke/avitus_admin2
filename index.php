@@ -38,7 +38,7 @@
             if($password==$db_pass){
               ?>
                 <script>
-                  location.replace("dashboard2.php");
+                  location.replace("dashboard3.php");
                 </script>
               <?php
             }else {

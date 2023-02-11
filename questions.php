@@ -49,10 +49,10 @@ if(!isset($_SESSION['username'])){
           </button>
         </div>
         <div>
-          <a class="navbar-brand brand-logo" href="dashboard2.php">
+          <a class="navbar-brand brand-logo" href="dashboard3.php">
             <img src="images/logo.svg" alt="logo" />
           </a>
-          <a class="navbar-brand brand-logo-mini" href="dashboard2.php">
+          <a class="navbar-brand brand-logo-mini" href="dashboard3.php">
             <img src="images/logo-mini.svg" alt="logo" />
           </a>
         </div>
