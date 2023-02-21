@@ -50,13 +50,13 @@ if(!isset($_SESSION['username'])){
 
         var data = google.visualization.arrayToDataTable([
           ['question', 'ans count'],
-          ['Pranali', 5],
-          ['Parth',  2],
-          ['Gayatri',2],
-          ['Abhi', 2],
+          ['Cup nest', 10],
+          ['Adherent nests',  2],
+          ['Platform nests',2],
+          ['Earth-hole nests', 2],
         ]);
 
-        var options = { title: 'What is your name ?' };
+        var options = { title: 'Which type of nest it is ? ?' };
         var chart = new google.visualization.PieChart(document.getElementById('piechart_name'));
         chart.draw(data, options);
       }
@@ -65,13 +65,13 @@ if(!isset($_SESSION['username'])){
 
         var data = google.visualization.arrayToDataTable([
              ['question', 'ans count'],
-             ['10th', 5],
-             ['12th', 1],
-             ['9th', 3],
-             ['8th', 2],
+             ['small', 12],
+             ['medium', 1],
+             ['large', 3],
+             ['extra large', 2],
         ]);
 
-        var options = { title: 'Which is your Class ?' };
+        var options = { title: 'What is the size of nest ?' };
         var chart = new google.visualization.PieChart(document.getElementById('piechart_class'));
         chart.draw(data, options);
       }
@@ -80,13 +80,13 @@ if(!isset($_SESSION['username'])){
 
          var data = google.visualization.arrayToDataTable([
              ['question', 'ans count'],
-             ['Maths', 5],
-             ['Science', 1],
-             ['English', 3],
-             ['Marathi', 2],
+             ['sparrow', 90],
+             ['Blue birds', 1],
+             ['Pigeons', 3],
+             ['Parakeets', 2],
          ]);
 
-         var options = { title: 'Which is your Subject ?' };
+         var options = { title: 'Which bird is in the nest ?' };
          var chart = new google.visualization.PieChart(document.getElementById('piechart_subject'));
          chart.draw(data, options);
      }
