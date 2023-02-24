@@ -98,6 +98,8 @@ if (!isset($_SESSION['username'])) {
 
       // FIREBASE TESTING
       const querySnapshot = await getDocs(collection(db, 'questions'));
+      const quizSnap = await getDocs(collection(db, 'quiz'));
+
 
       // Get a reference to the parent element where the HTML blocks will be appended
       const parentElement = document.querySelector('.row');
@@ -105,13 +107,33 @@ if (!isset($_SESSION['username'])) {
       let i = 0;
       querySnapshot.forEach((doc) => {
 
+        let opt1 = 0;
+        let opt2 = 0;
+        let opt3 = 0;
+        let opt4 = 0;
+        quizSnap.forEach((doc) => {
+
+          if(doc.data().answers[`${i}`] == 1) {
+            opt1++;
+          }
+          else if(doc.data().answers[`${i}`] == 2) {
+            opt2++;
+          }
+          else if(doc.data().answers[`${i}`] == 3) {
+            opt3++;
+          }
+          else if(doc.data().answers[`${i}`] == 4) {
+            opt4++;
+          }
+        });
+
         // Setting up the graph data
         var data = google.visualization.arrayToDataTable([
           ['question', 'ans count'],
-          [doc.data().option1, 10],
-          [doc.data().option2, 5],
-          [doc.data().option3, 2],
-          [doc.data().option4, 2],
+          [doc.data().option1, opt1],
+          [doc.data().option2, opt2],
+          [doc.data().option3, opt3],
+          [doc.data().option4, opt4],
         ]);
 
         var options = {
