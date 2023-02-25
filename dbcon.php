@@ -3,9 +3,9 @@
     $server = "localhost";
     $user = "root";
     $password = "" ;
-    $db = "avitus" ; // EDIT DB_NAME
+    $db = "avitus_db" ; // EDIT DB_NAME
 
-    $con = mysqli_connect($server,$user,$password,$db,3308); // EDIT PORT NUMBER 
+    $con = mysqli_connect($server,$user,$password,$db,3307); // EDIT PORT NUMBER 
 
     if(!$con){
       ?>

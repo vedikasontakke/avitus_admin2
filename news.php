@@ -102,18 +102,18 @@ if (!isset($_SESSION['username'])) {
           <li class="nav-item nav-category">Add</li>
 
           <li class="nav-item">
-            <a class="nav-link" href="questions.php">
-              <i class="menu-icon mdi mdi-file-document"></i>
-              <span class="menu-title">Questions</span>
-            </a>
-            <a class="nav-link" href="news.php">
-              <i class="menu-icon mdi mdi-file-document"></i>
-              <span class="menu-title">Blogs</span>
-            </a>
-            <a class="nav-link" href="faq.php">
-              <i class="menu-icon mdi mdi-file-document"></i>
-              <span class="menu-title">FAQs</span>
-            </a>
+          <a class="nav-link" href="questions.php">
+            <i class="menu-icon mdi mdi-file-document"></i>
+            <span class="menu-title">Questions</span>
+          </a>
+          <a class="nav-link" href="news.php">
+            <i class="menu-icon mdi mdi-file-document"></i>
+            <span class="menu-title">Blogs</span>
+          </a>
+          <a class="nav-link" href="faq.php">
+            <i class="menu-icon mdi mdi-file-document"></i>
+            <span class="menu-title">FAQs</span>
+          </a>
           </li>
         </ul>
       </nav>
@@ -125,50 +125,27 @@ if (!isset($_SESSION['username'])) {
           <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Question Form</h4>
-                <!-- 
+                <h4 class="card-title">Blogs Form</h4>
+<!-- 
                 <form class="forms-sample" method="" action="" id="question_form"> -->
-                <div class="form-group">
-                  <label for="question">Question Id</label>
-                  <input type="number" class="form-control" name="question" id="question_id" placeholder="Question Id" Required>
-                </div>
-                <div class="form-group">
-                  <label for="question">Question</label>
-                  <input type="text" class="form-control" name="question" id="question" placeholder="Question" Required>
-                </div>
-                <div class="form-group">
-                  <label for="question_type">Select Question Type</label>
-
-                  <select class="form-control" id="question_type" Required>
-
-                    <option value="multiple_choice">Multiple Choice Question</option>
-                    <option value="true_false">Two Option Only</option>
-                    <option value="brief_answer">Brief Answer</option>
-
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="option1" id="option1_label">Option 1</label>
-                  <input type="text" class="form-control" name="option1" id="option1" placeholder="Option 1">
-                </div>
-                <div class="form-group">
-                  <label for="option2" id="option2_label">Option 2</label>
-                  <input type="text" class="form-control" name="option2" id="option2" placeholder="Option 2">
-                </div>
-                <div class="form-group">
-                  <label for="option3" id="option3_label">Option 3</label>
-                  <input type="text" class="form-control" name="option3" id="option3" placeholder="Option 3">
-                </div>
-                <div class="form-group">
-                  <label for="option4" id="option4_label">Option 4</label>
-                  <input type="text" class="form-control" name="option4" id="option4" placeholder="Option 4">
-                </div>
-                <div class="form-group">
-                  <label for="additional" id="brief_answer_label">Write your answer here</label>
-                  <input type="text" class="form-control" name="additional" id="brief_answer" placeholder="Write your answer here">
-                </div>
-                <button type="submit" name="submit" id="submit_btn" value="submit" class="btn btn-primary me-2">Submit</button>
-                <a class="btn btn-primary me-2" id="reset_btn">Reset</a>
+                  <div class="form-group">
+                    <label for="blog_id">Blog Id</label>
+                    <input type="number" class="form-control" id="blog_id" placeholder="Blog Id" Required>
+                  </div>
+                  <div class="form-group">
+                    <label for="question">Blog Title</label>
+                    <input type="text" class="form-control" id="blog_title" placeholder="Blog Title" Required>
+                  </div>
+                  <div class="form-group">
+                    <label for="question">Image URL</label>
+                    <input type="text" class="form-control" id="blog_img" placeholder="Past Your Image URL" Required>
+                  </div>
+                  <div class="form-group">
+                    <label for="additional" id="brief_answer_label">Write your answer here</label>
+                    <textarea style="height:150px" class="form-control" id="blog_desc" placeholder="Write your answer here"></textarea>
+                  </div>
+                  <button type="submit" name="submit" id="submit_btn" value="submit" class="btn btn-primary me-2">Submit</button>
+                  <a class="btn btn-primary me-2" id="reset_btn">Reset</a>
                 <!-- </form> -->
               </div>
             </div>
@@ -239,151 +216,73 @@ if (!isset($_SESSION['username'])) {
     const analytics = getAnalytics(app);
 
     import {
-      getFirestore,
-      doc,
-      getDoc,
-      setDoc,
-      collection,
-      addDoc,
-      updateDoc,
-      deleteDoc,
-      deleteField,
-      getDocs
+      getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, getDocs
     }
     from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
     const db = getFirestore();
 
     // ------------------------------ References For UI in Form ---------------------------
-
-    // Labels
-    let OptionOneLabel = document.getElementById('option1_label');
-    let OptionTwoLabel = document.getElementById('option2_label');
-    let OptionThreeLabel = document.getElementById('option3_label');
-    let OptionFourLabel = document.getElementById('option4_label');
-    let BreifAnsLabel = document.getElementById("brief_answer_label");
-
+    
 
     // Inputs
-    let QuestionId = document.getElementById('question_id');
-    let QuestionBox = document.getElementById('question');
-    let QuestionType = document.getElementById('question_type');
-    let OptionOne = document.getElementById('option1');
-    let OptionTwo = document.getElementById('option2');
-    let OptionThree = document.getElementById('option3');
-    let OptionFour = document.getElementById('option4');
-    let BriefAns = document.getElementById("brief_answer");
+    let BlogId = document.getElementById('blog_id');
+    let BlogImageURL = document.getElementById('blog_img');
+    let BlogDesc = document.getElementById('blog_desc');
+    let BlogTitle = document.getElementById('blog_title');
 
     // Buttons
     let SubmitButton = document.getElementById('submit_btn');
     let ResetButton = document.getElementById('reset_btn');
 
-    // ----------------------------- INITIALIZING Components for Multiple choice questions --
-    OptionOneLabel.style.display = 'block';
-    OptionTwoLabel.style.display = 'block';
-    OptionThreeLabel.style.display = 'block';
-    OptionFourLabel.style.display = 'block';
-    OptionOne.style.display = 'block';
-    OptionTwo.style.display = 'block';
-    OptionThree.style.display = 'block';
-    OptionFour.style.display = 'block';
-    BreifAnsLabel.style.display = 'none';
-    BriefAns.style.display = 'none';
-
 
     // ------------------------------ Adding Document To Firestore ---------------------------
     async function AddDocument_CustomeID() {
+      
+      let b_id = parseInt(BlogId.value)
 
-      var ref = doc(db, "questions", QuestionId.value);
+      var ref = doc(db, "top_news", BlogId.value);
 
       const docRef = await setDoc(
-          ref, {
-            option1: OptionOne.value,
-            option2: OptionTwo.value,
-            option3: OptionThree.value,
-            option4: OptionFour.value,
-            brief_ans: BriefAns.value,
-            question_type: QuestionType.value,
-            question: QuestionBox.value
-          }
-        )
-        .then(() => {
-          alert("Question added successfully.");
-          reset();
-        })
-        .catch((error) => {
-          alert("Error: " + error);
-        });
+        ref, {
+          id: b_id,
+          imageURL: BlogImageURL.value,
+          newsBody: BlogDesc.value,
+          title: BlogTitle.value
+        }
+      )
+      .then(()=>{
+        alert("News added successfully.");
+        reset();
+      })
+      .catch((error)=>{
+        alert("Error: " + error);
+      });
     }
 
     // ------------------------------ Getting Document From Firestore -------------------
-    async function GetADocument() {
-      var ref = doc(db, "questions", QuestionId.value);
+    async function GetADocument(){
+      var ref = doc(db, "top_news", BlogId.value);
       const docSnap = await getDoc(ref);
 
-      if (docSnap.exists()) {
-        QuestionBox.value = docSnap.data().question;
-        OptionOne.value = docSnap.data().option1;
-        OptionTwo.value = docSnap.data().option2;
-        OptionThree.value = docSnap.data().option3;
-        OptionFour.value = docSnap.data().option4;
-        BriefAns.value = docSnap.data().brief_ans;
-      } else {
-        alert("NO such Document");
+      if(docSnap.exists()) {
+        BlogId.value = docSnap.data().id;
+        BlogImageURL.value = docSnap.data().imageURL;
+        BlogDesc.value = docSnap.data().newsBody;
+        BlogTitle.value = docSnap.data().title;
+      }
+      else {
+        alert("NO such Document");  
       }
     }
 
-    // ---------------------------- CHANGING OPTION TYPES -------------------------------
-    function changeOptionsType() {
-
-      let selected_option = QuestionType.value;
-
-      if (selected_option === 'true_false') {
-        // Disabling Unncessary UI
-        OptionOneLabel.style.display = 'block';
-        OptionTwoLabel.style.display = 'block';
-        OptionThreeLabel.style.display = 'none';
-        OptionFourLabel.style.display = 'none';
-        OptionOne.style.display = 'block';
-        OptionTwo.style.display = 'block';
-        OptionThree.style.display = 'none';
-        OptionFour.style.display = 'none';
-        BreifAnsLabel.style.display = 'none';
-        BriefAns.style.display = 'none';
-      } else if (selected_option === 'brief_answer') {
-        OptionOneLabel.style.display = 'none';
-        OptionTwoLabel.style.display = 'none';
-        OptionThreeLabel.style.display = 'none';
-        OptionFourLabel.style.display = 'none';
-        OptionOne.style.display = 'none';
-        OptionTwo.style.display = 'none';
-        OptionThree.style.display = 'none';
-        OptionFour.style.display = 'none';
-        BreifAnsLabel.style.display = 'block';
-        BriefAns.style.display = 'block';
-      } else if (selected_option === 'multiple_choice') {
-        OptionOneLabel.style.display = 'block';
-        OptionTwoLabel.style.display = 'block';
-        OptionThreeLabel.style.display = 'block';
-        OptionFourLabel.style.display = 'block';
-        OptionOne.style.display = 'block';
-        OptionTwo.style.display = 'block';
-        OptionThree.style.display = 'block';
-        OptionFour.style.display = 'block';
-        BreifAnsLabel.style.display = 'none';
-        BriefAns.style.display = 'none';
-      }
-
-    }
 
     // ---------------------------- Resting all inputs ----------------------------------
     async function reset() {
-      QuestionId.value = "";
-      QuestionBox.value = "";
-      OptionOne.value = "";
-      OptionTwo.value = "";
-      OptionThree.value = "";
-      OptionFour.value = "";
+      BlogId.value = "";
+      BlogDesc.value = "";
+      BlogImageURL.value = "";
+      BlogTitle.value = "";
     }
 
     // ------------------------------- TESTING CODE -------------------------------------
@@ -402,7 +301,6 @@ if (!isset($_SESSION['username'])) {
     // ------------------------------ Adding Events to BUtton ---------------------------
     SubmitButton.addEventListener("click", AddDocument_CustomeID);
     ResetButton.addEventListener("click", reset);
-    QuestionType.addEventListener("change", changeOptionsType);
   </script>
 </body>
 

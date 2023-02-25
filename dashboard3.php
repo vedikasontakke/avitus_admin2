@@ -37,7 +37,6 @@ if (!isset($_SESSION['username'])) {
   <link rel="shortcut icon" href="images/favicon.png" />
 
 
-
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <script type="module">
@@ -260,6 +259,14 @@ if (!isset($_SESSION['username'])) {
           <a class="nav-link" href="questions.php">
             <i class="menu-icon mdi mdi-file-document"></i>
             <span class="menu-title">Questions</span>
+          </a>
+          <a class="nav-link" href="news.php">
+            <i class="menu-icon mdi mdi-file-document"></i>
+            <span class="menu-title">Blogs</span>
+          </a>
+          <a class="nav-link" href="faq.php">
+            <i class="menu-icon mdi mdi-file-document"></i>
+            <span class="menu-title">FAQs</span>
           </a>
         </li>
       </ul>
